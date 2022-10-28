@@ -24,18 +24,24 @@ import { nanoid } from 'nanoid'
   
 
   const App = () => {
-    const randomArray = Array.from({length: 10}, () => Math.floor(Math.random() * 7));
+    const randomArray = () => (Array.from({length: 10}, () => Math.floor(Math.random() * 7)));
+
     const [dies, setDies] = React.useState(
       // State Lazy init, by using an arrow function
-      () => randomArray.map(el => ({id: nanoid(), value:el})))
+      () => randomArray().map(el => ({id: nanoid(), value:el})))
 
     console.log("dies: ", dies)
+
+    const rollDice = () => {
+      setDies(olDies => randomArray().map(el => ({id: nanoid(), value:el})))
+    }
 
     return (
         <main>
           <div className='dice-container'>
             {dies.map(die => (<Die value={die.value} key={die.id}/>))}
           </div>
+          <button onClick={rollDice} className="roll-dice-button">Roll</button>
         </main>
     )
   }
