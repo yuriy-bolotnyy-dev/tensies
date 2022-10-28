@@ -1,6 +1,9 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react'
+import Die from './components/Die'
+import '../style.css'
+
+import { nanoid } from 'nanoid'
+
 
 /**
  * Challenge:
@@ -18,10 +21,21 @@ import './App.css'
  *        in the center of the page
  */
 
- function App() {
-  return (
-      <main></main>
-  )
-}
+  
 
-export default App
+  const App = () => {
+    const randomArray = Array.from({length: 10}, () => Math.floor(Math.random() * 7));
+    const [dies, setDies] = React.useState(randomArray)
+    console.log("dies: ", dies)
+    console.log("dies: ", dies.map(die => (<div>{die}</div>)))    
+
+    return (
+        <main>
+          <div className='grid-container'>
+            {dies.map(die => (<Die value={die} key={nanoid()}/>))}
+          </div>
+        </main>
+    )
+  }
+
+  export default App
