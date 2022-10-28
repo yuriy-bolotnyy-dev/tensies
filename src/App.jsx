@@ -24,7 +24,9 @@ import { nanoid } from 'nanoid'
   
 
   const App = () => {
-    const randomArray = () => (Array.from({length: 10}, () => Math.floor(Math.random() * 7)));
+    const randonNum = () => (Math.floor(Math.random() * 7))
+
+    const randomArray = () => (Array.from({length: 10}, () => randonNum()));
 
     const [dies, setDies] = React.useState(
       // State Lazy init, by using an arrow function
@@ -33,7 +35,10 @@ import { nanoid } from 'nanoid'
     console.log("dies: ", dies)
 
     const rollDice = () => {
-      setDies(olDies => randomArray().map(el => ({id: nanoid(), value:el})))
+      // console.log("before roll: ", dies)
+      // console.log("roll: ", dies.map(die => ({id:die.id, value:randonNum()})))
+      setDies(oldDies => (oldDies.map(die => ({id:die.id, value:randonNum()}))))
+      // console.log("after roll: ", dies)
     }
 
     return (
