@@ -11,21 +11,26 @@ import { nanoid } from 'nanoid'
 
     const [dies, setDies] = React.useState(
       // State Lazy init, by using an arrow function
-      () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
+      () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: true})))
 
     console.log("dies: ", dies)
 
     const rollDice = () => {
       // console.log("before roll: ", dies)
       // console.log("roll: ", dies.map(die => ({id:die.id, value:randonNum()})))
-      setDies(oldDies => (oldDies.map(die => ({id:die.id, value:randonNum(), isHeld:die.isHeld}))))
+      setDies(oldDies => (oldDies.map(die => (
+        // {id: die.id, value: randonNum(), isHeld: die.isHeld}
+        {...die, value: randonNum()}
+        ))))
       // console.log("after roll: ", dies)
     }
 
     return (
         <main>
           <div className='dice-container'>
-            {dies.map(die => (<Die value={die.value} key={die.id}/>))}
+            {dies.map(die => (
+              <Die value={die.value} key={die.id} isHeld={die.isHeld}/>
+            ))}
           </div>
           <button onClick={rollDice} className="roll-dice">Roll</button>
         </main>
