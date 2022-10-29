@@ -2,8 +2,8 @@ import React from "react";
 
 const Die = (props) => {
     const handleClick = (event) => {
-        console.log("event", event)
-        console.log("id:", props.id)
+        // console.log("event", event)
+        // console.log("id:", props.id)
         props.holdDice(props.id)
     }
 

@@ -19,17 +19,13 @@ import { nanoid } from 'nanoid'
  * 
  */
 
-  const holdDice = (id) => {
-    console.log(`hold dice id: ${id}`)
-  }
-
     const randonNum = () => (Math.floor(Math.random() * 7))
 
     const randomArray = () => (Array.from({length: 10}, () => randonNum()));
 
     const [dies, setDies] = React.useState(
       // State Lazy init, by using an arrow function
-      () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: true})))
+      () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
 
     console.log("dies: ", dies)
 
@@ -41,6 +37,14 @@ import { nanoid } from 'nanoid'
         {...die, value: randonNum()}
         ))))
       // console.log("after roll: ", dies)
+    }
+
+    const holdDice = (id) => {
+      // console.log(`hold dice id: ${id}`)
+      setDies(oldDies => (oldDies.map(die => (
+        // {id: die.id, value: randonNum(), isHeld: die.isHeld}
+        {...die, isHeld: die.id === id ? !die.isHeld : die.isHeld}
+        ))))
     }
 
     return (
