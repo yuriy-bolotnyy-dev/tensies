@@ -1,23 +1,12 @@
 import React from 'react'
 import Die from './components/Die'
+import ReactConfetti from 'react-confetti'
 import '../style.css'
 
 import { nanoid } from 'nanoid'
+// import Confetti from 'react-confetti/dist/types/Confetti'
 
   const App = () => {
-
-    /**
- * Challenge: Create a function `holdDice` that takes
- * `id` as a parameter. For now, just have the function
- * console.log(id).
- * 
- * Then, figure out how to pass that function down to each
- * instance of the Die component so when each one is clicked,
- * it logs its own unique ID property. (Hint: there's more
- * than one way to make that work, so just choose whichever
- * you want)
- * 
- */
 
     const randonNum = () => (Math.floor(Math.random() * 7))
 
@@ -70,6 +59,7 @@ import { nanoid } from 'nanoid'
             ))}
           </div>
           <button onClick={rollDice} className="roll-dice">Roll</button>
+          {/* <ReactConfetti /> */}
         </main>
     )
   }
