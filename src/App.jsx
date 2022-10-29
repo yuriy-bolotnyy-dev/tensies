@@ -51,7 +51,7 @@ import { nanoid } from 'nanoid'
         <main>
           <div className='dice-container'>
             {dies.map(die => (
-              <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={holdDice} />
+              <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
             ))}
           </div>
           <button onClick={rollDice} className="roll-dice">Roll</button>
