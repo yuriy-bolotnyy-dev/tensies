@@ -27,30 +27,43 @@ import { nanoid } from 'nanoid'
       // State Lazy init, by using an arrow function
       () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
 
+    const [tenzies, setTenzies] = React.useState(false)
+
+    React.useEffect(() => {
+      console.log(`effect called`)
+      // console.log(`are Held: ${dies.filter(die => die.isHeld).length}`)
+      // console.log("all are held: ", dies.every(die => die.isHeld))
+      // console.log("all are equal: ", dies.every(die => die.value === dies[0].value))
+      setTenzies(
+        dies.every(die => die.isHeld) && 
+        dies.every(die => die.value === dies[0].value)
+        )
+    }, [dies])
+      
     console.log("dies: ", dies)
+    tenzies && console.log("User Won!")
 
     const rollDice = () => {
-      // console.log("before roll: ", dies)
-      // console.log("roll: ", dies.map(die => ({id:die.id, value:randonNum()})))
       setDies(oldDies => oldDies.map(die => (
-        // {id: die.id, value: randonNum(), isHeld: die.isHeld}
-        die.isHeld ? {...die} : {...die, value: randonNum()}
+        die.isHeld ? 
+        die 
+        : {...die, value: randonNum()}
         )))
       // console.log("after roll: ", dies)
     }
 
     const holdDice = (id) => {
-      // console.log(`hold dice id: ${id}`)
       setDies(oldDies => oldDies.map(die => (
-        // {id: die.id, value: randonNum(), isHeld: die.isHeld}
-        {...die, 
-          isHeld: die.id === id ? !die.isHeld : die.isHeld
-        }
+        die.id === id ?
+        {...die, isHeld: !die.isHeld} 
+        : die
         )))
     }
 
     return (
         <main>
+          <h1 className="title">Tenzies</h1>
+            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className='dice-container'>
             {dies.map(die => (
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
