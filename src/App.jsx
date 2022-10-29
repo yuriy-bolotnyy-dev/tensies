@@ -32,19 +32,21 @@ import { nanoid } from 'nanoid'
     const rollDice = () => {
       // console.log("before roll: ", dies)
       // console.log("roll: ", dies.map(die => ({id:die.id, value:randonNum()})))
-      setDies(oldDies => (oldDies.map(die => (
+      setDies(oldDies => oldDies.map(die => (
         // {id: die.id, value: randonNum(), isHeld: die.isHeld}
-        {...die, value: randonNum()}
-        ))))
+        die.isHeld ? {...die} : {...die, value: randonNum()}
+        )))
       // console.log("after roll: ", dies)
     }
 
     const holdDice = (id) => {
       // console.log(`hold dice id: ${id}`)
-      setDies(oldDies => (oldDies.map(die => (
+      setDies(oldDies => oldDies.map(die => (
         // {id: die.id, value: randonNum(), isHeld: die.isHeld}
-        {...die, isHeld: die.id === id ? !die.isHeld : die.isHeld}
-        ))))
+        {...die, 
+          isHeld: die.id === id ? !die.isHeld : die.isHeld
+        }
+        )))
     }
 
     return (
