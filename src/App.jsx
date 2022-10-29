@@ -18,19 +18,30 @@ import { nanoid } from 'nanoid'
 
     const [tenzies, setTenzies] = React.useState(false)
 
+    console.log("dies: ", dies)
+    console.log("tenzies: ", tenzies)
+
     React.useEffect(() => {
       console.log(`effect called`)
       // console.log(`are Held: ${dies.filter(die => die.isHeld).length}`)
       // console.log("all are held: ", dies.every(die => die.isHeld))
       // console.log("all are equal: ", dies.every(die => die.value === dies[0].value))
-      setTenzies(
-        dies.every(die => die.isHeld) && 
-        dies.every(die => die.value === dies[0].value)
-        )
-    }, [dies])
       
-    console.log("dies: ", dies)
-    tenzies && console.log("User Won!")
+      // setTenzies(
+      //   dies.every(die => die.isHeld) && 
+      //   dies.every(die => die.value === dies[0].value)
+      //   )
+
+      dies.every(die => die.isHeld) && 
+      dies.every(die => die.value === dies[0].value) && 
+      setTenzies(true)
+
+    }, [dies])
+
+    React.useEffect(() => {
+      tenzies && console.log("User Won!")
+      tenzies && (document.querySelector("button").textContent = "New Game")
+    }, [tenzies])
 
     const rollDice = () => {
       setDies(oldDies => oldDies.map(die => (
@@ -59,7 +70,7 @@ import { nanoid } from 'nanoid'
             ))}
           </div>
           <button onClick={rollDice} className="roll-dice">Roll</button>
-          {/* <ReactConfetti /> */}
+          {tenzies && <ReactConfetti />}
         </main>
     )
   }
