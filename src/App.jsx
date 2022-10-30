@@ -74,7 +74,8 @@ import { nanoid } from 'nanoid'
     return (
         <main>
           <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+          {/* <img src="../public/game.jpg" alt="" /> */}
+          <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className='dice-container'>
             {dies.map(die => (
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
