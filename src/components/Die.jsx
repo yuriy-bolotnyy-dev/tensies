@@ -1,11 +1,16 @@
 import React from "react";
 
-const Die = (props) => (
-    <div className={props.isHeld ? "die held" : "die"} onClick={props.holdDice}>
+const Die = (props) => {
+    return (<div className={props.isHeld ? "die held" : "die"} onClick={props.holdDice}>
         {/* {props.value} */}
-        <img src={`../../public/${props.value}.png`} alt="" />
+        <div className="box">
+            <div className={props.isHeld ? 'flipper' : 'flip'}>
+                <img src={`../../public/${props.value}.png`} alt="" />
+            </div>
+        </div>
+        
         <div className="die-mask"></div>
-    </div>
-)
+    </div>)
+}
 
 export default Die

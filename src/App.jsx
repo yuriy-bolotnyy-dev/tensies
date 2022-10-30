@@ -41,12 +41,20 @@ import { nanoid } from 'nanoid'
       dies.every(die => die.value === dies[0].value) && 
       setTenzies(true)
 
+      removeFlipAnimation()
+
     }, [dies])
 
     React.useEffect(() => {
       tenzies && console.log("User Won!")
       tenzies && (btn.textContent = NEW_GAME)
     }, [tenzies])
+
+    const removeFlipAnimation = () => {
+      console.log("removing flip animation")
+      console.log("before: ", document.querySelectorAll("div.flipper"))
+      document.querySelectorAll("div.flipper").forEach(el => el.classList.remove('flip'))
+    }
 
     const rollDice = () => {
       setDies(oldDies => oldDies.map(die => (
@@ -83,6 +91,7 @@ import { nanoid } from 'nanoid'
           </div>
           <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">
             {tenzies ? NEW_GAME : ROLL}
+            <img src="../public/dice.png" alt="" className='roll-dice-btn-img'/>
           </button>
           {tenzies && <ReactConfetti />}
         </main>
