@@ -61,13 +61,6 @@ import { nanoid } from 'nanoid'
       console.log("New Game requested")
       setDies(randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
       setTenzies(false)
-      document.querySelector("button").textContent = ROLL
-    }
-
-    const handleClick = () => {
-      const btn = document.querySelector("button")
-      console.log("Click btn: ", btn.textContent)
-      btn.textContent === NEW_GAME ? startNewName() : rollDice()
     }
 
     const holdDice = (id) => {
@@ -87,7 +80,7 @@ import { nanoid } from 'nanoid'
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
             ))}
           </div>
-          <button onClick={handleClick} className="roll-dice">{ROLL}</button>
+          <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">{tenzies ? NEW_GAME : ROLL}</button>
           {tenzies && <ReactConfetti />}
         </main>
     )
