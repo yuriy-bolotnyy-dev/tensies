@@ -8,6 +8,11 @@ import { nanoid } from 'nanoid'
 
   const App = () => {
 
+    const NEW_GAME = "New Game"
+    const ROLL = "Roll"
+
+    const btn = document.querySelector("button")
+
     const randonNum = () => (Math.floor(Math.random() * 7))
 
     const randomArray = () => (Array.from({length: 10}, () => randonNum()));
@@ -16,7 +21,7 @@ import { nanoid } from 'nanoid'
       // State Lazy init, by using an arrow function
       () => randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
 
-    const [tenzies, setTenzies] = React.useState(false)
+    const [tenzies, setTenzies] = React.useState(() => false)
 
     console.log("dies: ", dies)
     console.log("tenzies: ", tenzies)
@@ -40,7 +45,7 @@ import { nanoid } from 'nanoid'
 
     React.useEffect(() => {
       tenzies && console.log("User Won!")
-      tenzies && (document.querySelector("button").textContent = "New Game")
+      tenzies && (btn.textContent = NEW_GAME)
     }, [tenzies])
 
     const rollDice = () => {
@@ -50,6 +55,19 @@ import { nanoid } from 'nanoid'
         : {...die, value: randonNum()}
         )))
       // console.log("after roll: ", dies)
+    }
+
+    const startNewName = () => {
+      console.log("New Game requested")
+      setDies(randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
+      setTenzies(false)
+      document.querySelector("button").textContent = ROLL
+    }
+
+    const handleClick = () => {
+      const btn = document.querySelector("button")
+      console.log("Click btn: ", btn.textContent)
+      btn.textContent === NEW_GAME ? startNewName() : rollDice()
     }
 
     const holdDice = (id) => {
@@ -69,7 +87,7 @@ import { nanoid } from 'nanoid'
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
             ))}
           </div>
-          <button onClick={rollDice} className="roll-dice">Roll</button>
+          <button onClick={handleClick} className="roll-dice">{ROLL}</button>
           {tenzies && <ReactConfetti />}
         </main>
     )
