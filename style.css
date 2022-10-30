@@ -15,7 +15,7 @@ body {
 
 main {
   background-color: #F5F5F5;
-  height: 400px;
+  height: 450px;
   max-width: 800px;
   border-radius: 5px;
 
@@ -28,7 +28,7 @@ main {
 .dice-container {
   background: #F5F5F5;
   border-radius: 10px;
-  padding: 35px;
+  padding: 30px;
   display: grid;
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr; */
@@ -38,10 +38,10 @@ main {
 }
 
 .die {
-  width: 36px;
-  height: 36px;
-  background: #FFFFFF;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+  width: 70px;
+  height: 70px;
+  /* background: #FFFFFF; */
+  /* box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15); */
   border-radius: 10px;
 
   color: #2B283A;
@@ -60,6 +60,11 @@ main {
   /* cursor:help; */
   cursor:pointer;
   }
+
+.die img {
+  height: 90%;
+  border-radius: 10px;
+}
 
 .held {
   background-color: #59E391;

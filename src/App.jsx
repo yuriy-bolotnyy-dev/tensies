@@ -13,7 +13,7 @@ import { nanoid } from 'nanoid'
 
     const btn = document.querySelector("button")
 
-    const randonNum = () => (Math.floor(Math.random() * 7))
+    const randonNum = () => (Math.ceil(Math.random() * 6))
 
     const randomArray = () => (Array.from({length: 10}, () => randonNum()));
 
@@ -80,7 +80,9 @@ import { nanoid } from 'nanoid'
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
             ))}
           </div>
-          <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">{tenzies ? NEW_GAME : ROLL}</button>
+          <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">
+            {tenzies ? NEW_GAME : ROLL}
+          </button>
           {tenzies && <ReactConfetti />}
         </main>
     )
