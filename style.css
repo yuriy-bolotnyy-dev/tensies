@@ -36,7 +36,7 @@ opacity: 0.8;
 background-size: 20px 20px;
 background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7 1px, #e5e5f7); */
 
-  height: 35rem;
+  height: 40rem;
   /* max-width: 1000px; */
   width: 50rem;
   border-radius: 1rem;
@@ -148,10 +148,11 @@ background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7
 .instructions {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  font-size: 1.5rem;
   /* margin-top: 0; */
-  margin: 1rem 3rem 1rem;
+  margin: 1rem 1rem 0.5rem;
   text-align: center;
-  max-width: 25rem;
+  max-width: 35rem;
 }
 
 main>img {
