@@ -5,7 +5,7 @@ const Die = (props) => {
         {/* {props.value} */}
         <div className="box">
             <div className={props.isHeld ? 'flipper' : 'flip'}>
-                <img src={`../../public/${props.value}.png`} alt="" />
+                <img src={`../../${props.value}.png`} alt="" />
             </div>
         </div>
         
