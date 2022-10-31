@@ -91,7 +91,7 @@ import { nanoid } from 'nanoid'
           </div>
           <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">
             {tenzies ? NEW_GAME : ROLL}
-            <img src="../public/dice.png" alt="" className='roll-dice-btn-img'/>
+            <img src="../dice.png" alt="" className='roll-dice-btn-img'/>
           </button>
           {tenzies && <ReactConfetti />}
         </main>
