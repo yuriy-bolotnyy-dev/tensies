@@ -100,9 +100,10 @@ background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7
 
 .roll-dice {
     background: #5035FF;
-    box-shadow: 0rem 3rem 5rem rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0rem 3rem 5rem rgba(0, 0, 0, 0.1); */
+    box-shadow: inset 1rem 1rem 2rem -1rem rgba(0, 0, 0, 0.7);
     border-radius: 1rem;
-    padding: 0.5rem 1.25rem;
+    padding: 0.75rem 1.5rem;
     font-family: 'Karla';
     font-style: normal;
     font-weight: 700;
@@ -115,7 +116,7 @@ background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.25rem;
   }
 
 .roll-dice:focus {
@@ -123,7 +124,7 @@ background-image:  repeating-linear-gradient(0deg, #444cf7, #444cf7 1px, #e5e5f7
 }
 
 .roll-dice:active {
-    box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+    /* box-shadow: inset 1rem 1rem 2rem 1rem rgba(0, 0, 0, 0.7); */
 }
 
 .roll-dice-btn-img {
