@@ -41,7 +41,7 @@ import { nanoid } from 'nanoid'
       dies.every(die => die.value === dies[0].value) && 
       setTenzies(true)
 
-      removeFlipAnimation()
+      // removeFlipAnimation()
 
     }, [dies])
 
@@ -50,11 +50,11 @@ import { nanoid } from 'nanoid'
       tenzies && (btn.textContent = NEW_GAME)
     }, [tenzies])
 
-    const removeFlipAnimation = () => {
-      console.log("removing flip animation")
-      console.log("before: ", document.querySelectorAll("div.flipper"))
-      document.querySelectorAll("div.flipper").forEach(el => el.classList.remove('flip'))
-    }
+    // const removeFlipAnimation = () => {
+    //   console.log("removing flip animation")
+    //   console.log("before: ", document.querySelectorAll("div.flipper"))
+    //   // document.querySelectorAll("div.flipper").forEach(el => el.classList.remove('flip'))
+    // }
 
     const rollDice = () => {
       setDies(oldDies => oldDies.map(die => (
@@ -65,7 +65,7 @@ import { nanoid } from 'nanoid'
       // console.log("after roll: ", dies)
     }
 
-    const startNewName = () => {
+    const startNewGame = () => {
       console.log("New Game requested")
       setDies(randomArray().map(el => ({id: nanoid(), value:el, isHeld: false})))
       setTenzies(false)
@@ -81,6 +81,7 @@ import { nanoid } from 'nanoid'
 
     return (
         <main>
+          {tenzies && <ReactConfetti />}
           <h1 className="title">Tenzies</h1>
           {/* <img src="../public/game.jpg" alt="" /> */}
           <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
@@ -89,11 +90,10 @@ import { nanoid } from 'nanoid'
               <Die value={die.value} key={die.id} id={die.id} isHeld={die.isHeld} holdDice={() => holdDice(die.id)} />
             ))}
           </div>
-          <button onClick={tenzies ? startNewName : rollDice} className="roll-dice">
+          <button onClick={tenzies ? startNewGame : rollDice} className="roll-dice wiggle">
             {tenzies ? NEW_GAME : ROLL}
-            <img src="../dice.png" alt="" className='roll-dice-btn-img'/>
+            {!tenzies && <img src="../dice.png" alt="" className='roll-dice-btn-img'/>}
           </button>
-          {tenzies && <ReactConfetti />}
         </main>
     )
   }
